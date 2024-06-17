@@ -10,6 +10,32 @@
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
       <link href="css/theme.css" rel="stylesheet">
+
+     
+     <!-- JavaScript to filter papers based on selected hashtags -->
+     <script>
+         document.addEventListener('DOMContentLoaded', function () {
+             const checkboxes = document.querySelectorAll('.filter-checkbox');
+             const papers = document.querySelectorAll('.paper');
+     
+             checkboxes.forEach(checkbox => {
+                 checkbox.addEventListener('change', function () {
+                     const selectedTags = Array.from(checkboxes)
+                         .filter(checkbox => checkbox.checked)
+                         .map(checkbox => checkbox.value);
+     
+                     papers.forEach(paper => {
+                         const paperTags = paper.getAttribute('data-tags').split(' ');
+                         if (selectedTags.length === 0 || selectedTags.some(tag => paperTags.includes(tag))) {
+                             paper.style.display = '';
+                         } else {
+                             paper.style.display = 'none';
+                         }
+                     });
+                 });
+             });
+         });
+     </script>
    </head>
    <body>
       <div class="container">
@@ -36,23 +62,37 @@
             </div>
          </div>
          <hr>
-         <div class="row-fluid">
+         <div class="row-fluid"  id="navparent">
             <div class="span3 bs-docs-sidebar" id="navparent">
                <ul class="nav nav-list bs-docs-sidenav" data-spy="affix" data-offset-top="200" data-offset-bottom="260">
                   <li><a href="#inreview"> In Review and Preparation</a></li>
                   <li><a href="#published"> Journal Publications</a></li>
                   <li><a class="subhead" href="#2024"> 2024 </a></li>
                   <li><a class="subhead" href="#Later"> Later </a></li>
-                  <li><a href="#refereed"> Papers and Presentations in Refereed Conference Proceedings</a></li>
                </ul>
             </div>
             <div class="span8 offset1">
+               <!-- Filter Checkboxes -->
+               <div class="filter">
+                  <h4>Filter by Hashtag:</h4>
+                  <div class="checkbox-row">
+                     <label><input type="checkbox" class="filter-checkbox" value="FM"> Financial Mathematics</label>
+                     <label><input type="checkbox" class="filter-checkbox" value="AM"> Actuarial Mathematics</label>
+                     <label><input type="checkbox" class="filter-checkbox" value="ML"> Machine Learning</label>
+                     <label><input type="checkbox" class="filter-checkbox" value="DS"> Data Science</label>
+                     <label><input type="checkbox" class="filter-checkbox" value="SD"> Software Development</label>
+                     <label><input type="checkbox" class="filter-checkbox" value="SP"> Stochastic Process</label>
+                     <label><input type="checkbox" class="filter-checkbox" value="MM"> Management Mathematics</label>
+                     <label><input type="checkbox" class="filter-checkbox" value="MC"> Monte Carlo Simulation</label>
+                 </div>
+               </div>
+               <hr>
                 <section id="inreview">
                   <div class="page-header">
                      <h3>In Review and Preperation</h3>
                   </div>
                      <br/>
-                     <div class="row-fluid">
+                     <div class="row-fluid paper"  data-tags="ML SD FM">
                         <div class="span3">
                            <a class="thumbnail">
                            <img src="thumbs/ssrn.png?raw=TRUE" alt=""/>
@@ -67,16 +107,18 @@
                            <br/>
                            <span style="color:#0077be; background-color:#e0f7fa; padding: 5px; border-radius: 3px;">
                               <i>#Finance</i>
-                              <i>#LLM</i>
+                              <i>#LLMs</i>
+                              <i>#Sustainability</i>
+                              <i>#One Report</i>
                           </span>
                            <br/>
                         </div>
                      </div>
                      <hr>
-                     <div class="row-fluid">
+                     <div class="row-fluid paper"  data-tags="FM">
                         <div class="span3">
                            <a class="thumbnail">
-                           <img  src="thumbs/ssrn.png?raw=TRUE" alt=""/>
+                           <img  src="thumbs/ssrn.png" alt=""/>
                            </a>
                         </div>
                         <div class="span9">
@@ -87,7 +129,10 @@
                            <br/>
                            <br/>
                            <span style="color:#0077be; background-color:#e0f7fa; padding: 5px; border-radius: 3px;">
-                              <i>#Financial Mathematics</i>
+                              <i>#Factor Model</i>
+                              <i>#ESG Risk Factor</i>
+                              <i>#Sustainability</i>
+                              <i>#Thai Stock Market</i>
                           </span>
                            <br/>
                         </div>
@@ -102,7 +147,7 @@
                   <section id="2024">
                      <h3>In 2024</h3>
                      <br/>
-                     <div class="row-fluid">
+                     <div class="row-fluid paper"  data-tags="FM">
                         <div class="span3">
                            <a class="thumbnail">
                               <img src="thumbs/EE.jpg" alt="">
@@ -116,13 +161,16 @@
                            <br/>
                            <br/>
                            <span style="color:#0077be; background-color:#e0f7fa; padding: 5px; border-radius: 3px;">
-                              <i>#Financial Mathematics</i>
+                              <i>#Multi-Period Portfolio Optimization</i>
+                              <i>#Decarbonization</i>
+                              <i>#Divestment</i>
+                              <i>#Sustainbility</i>
                           </span>
                            <br/>
                         </div>
                      </div>
                      <hr>
-                     <div class="row-fluid">
+                     <div class="row-fluid paper"  data-tags="MM SD AM FM">
                         <div class="span3">
                            <a class="thumbnail">
                               <img src="thumbs/annals_of_actuarial_science.jpg" alt=""/>
@@ -136,15 +184,19 @@
                            <br/>
                            <br/>
                            <span style="color:#0077be; background-color:#e0f7fa; padding: 5px; border-radius: 3px;">
-                              <i>#Financial Mathematics</i>
-                              <i>#Actuarial Mathematics</i>
-                              <i>#Software</i>
+                              <i>#Multi-Period Portfolio Optimization</i>
+                              <i>#Pension Funds</i>
+                              <i>#Decarbonization</i>
+                              <i>#Divestment</i>
+                              <i>#Sustainbility</i>
+                              <i>#ESG</i>
+                              <i>#R Shiny</i>
                           </span>
                            <br/>
                         </div>
                      </div>
                      <hr>
-                     <div class="row-fluid">
+                     <div class="row-fluid paper"  data-tags="SP">
                         <div class="span3">
                            <a class="thumbnail">
                               <img src="thumbs/STA.jpg" alt="">
@@ -158,7 +210,9 @@
                            <br/>
                            <br/>
                            <span style="color:#0077be; background-color:#e0f7fa; padding: 5px; border-radius: 3px;">
-                              <i>#Stochastic Process</i>
+                              <i>#Random Walk on Grraph</i>
+                              <i>#Hitting Time</i>
+                              <i>#Game Simulation</i>
                           </span>
                            <br/>
                         </div>
@@ -167,7 +221,7 @@
                   <section id="Later">
                      <h3>Later</h3>
                      <hr>
-                     <div class="row-fluid">
+                     <div class="row-fluid paper"  data-tags="DS">
                         <div class="span3">
                            <a class="thumbnail">
                               <img src="thumbs/AA.jpg" alt="">
@@ -181,13 +235,14 @@
                            <br/>
                            <br/>
                            <span style="color:#0077be; background-color:#e0f7fa; padding: 5px; border-radius: 3px;">
-                              <i>#Data Science</i>
+                              <i>#Poisson Regression</i>
+                              <i>#Data Analsis</i>
                           </span>
                            <br/>
                         </div>
                      </div>
                   <hr>    
-                  <div class="row-fluid">
+                  <div class="row-fluid paper"  data-tags="MM">
                      <div class="span3">
                         <a class="thumbnail">
                            <img src="thumbs/MM.jpg" alt="">
@@ -201,13 +256,14 @@
                         <br/>
                         <br/>
                         <span style="color:#0077be; background-color:#e0f7fa; padding: 5px; border-radius: 3px;">
-                           <i>#Management Mathematics</i>
+                           <i>#Mixed Intreger Programming</i>
+                           <i>#Inventory</i>
                        </span>
                         <br/>
                      </div>
                   </div>
                <hr>               
-               <div class="row-fluid">
+               <div class="row-fluid paper"  data-tags="MC ML">
                         <div class="span3">
                            <a class="thumbnail">
                            <img src="thumbs/comphy_600dpi.jpg" alt=""/>
@@ -221,13 +277,15 @@
                            <br/>
                            <br/>
                            <span style="color:#0077be; background-color:#e0f7fa; padding: 5px; border-radius: 3px;">
-                              <i>#Monte Carlo Simulation</i>
+                              <i>#Network Reliability</i>
+                              <i>#Wang-Landua Sampling</i>
+                              <i>#Extream Vaule Function</i>
                           </span>
                            <br/>
                         </div>
                      </div>
                   <hr>
-               <div class="row-fluid">
+                  <div class="row-fluid paper"  data-tags="MC ML">
                         <div class="span3">
                            <a class="thumbnail">
                            <img src="thumbs/comphy_600dpi.jpg" alt=""/>
@@ -241,13 +299,15 @@
                            <br/>
                            <br/>
                            <span style="color:#0077be; background-color:#e0f7fa; padding: 5px; border-radius: 3px;">
-                              <i>#Monte Carlo Simulation</i>
+                              <i>#Numerical Intrgation</i>
+                              <i>#Wang-Landua Sampling</i>
+                              <i>#Extream Vaule Function</i>
                           </span>
                            <br/>
                         </div>
                      </div>
                   <hr>
-               <div class="row-fluid">
+                  <div class="row-fluid paper"  data-tags="MC ML">
                         <div class="span3">
                            <a class="thumbnail">
                            <img src="thumbs/appnummath_600dpi.jpg" alt=""/>
@@ -261,27 +321,14 @@
                            <br/>
                            <br/>
                            <span style="color:#0077be; background-color:#e0f7fa; padding: 5px; border-radius: 3px;">
-                              <i>#Monte Carlo Simulation</i>
+                              <i>#Numerical Intrgation</i>
+                              <i>#Wang-Landua Sampling</i>
+                              <i>#Extream Vaule Function</i>
                           </span>
                            <br/>
                         </div>
                      </div>
                </section>
-               <hr>
-               <section id="refereed">
-                  <div class="page-header">
-                     <h3>Conferences</h3>
-                  </div>
-                     <ol>
-                        <li class="publication">A. Ipsum, N. Tristique, D.J. Lorem, E. Morbi, D.W. Eget, “Pellentesque Massa”, 2018.</li>
-                        <li class="publication">G. Augue, N. Massa, H. Turpis, X. Duis, S.V. Nunc, “Ipsum consequat nisl vel pretium lectus", 2018.</li>
-                        <li class="publication">D.J. Nunc, N. Massa, E.N. Dignissim, “Felis eget velit aliquet sagittis id consectetur purus ut faucibus”, 2018.</li>
-                        <li class="publication">P. Magna, Z. Malesuada, A. Maecenas, N. Vitae, “Duis convallis convallis tellus id interdum velit laoreet”, 2018.</li>
-                        <li class="publication">A. Ipsum, N. Tristique, D.J. Lorem, E. Morbi, D.W. Eget, “Pellentesque Massa”, 2018.</li>
-                        <li class="publication">G. Augue, N. Massa, H. Turpis, X. Duis, S.V. Nunc, “Ipsum consequat nisl vel pretium lectus", 2018.</li>
-                        <li class="publication">D.J. Nunc, N. Massa, E.N. Dignissim, “Felis eget velit aliquet sagittis id consectetur purus ut faucibus”, 2018.</li>
-                        <li class="publication">P. Magna, Z. Malesuada, A. Maecenas, N. Vitae, “Duis convallis convallis tellus id interdum velit laoreet”, 2018.</li>
-                     </ol>
                </section>
             </div>
          </div>
@@ -312,6 +359,30 @@
          </div>
       </footer>
 
+  <!-- JavaScript to filter papers based on selected hashtags -->
+  <script>
+   document.addEventListener('DOMContentLoaded', function () {
+       const checkboxes = document.querySelectorAll('.filter-checkbox');
+       const papers = document.querySelectorAll('.paper');
+
+       checkboxes.forEach(checkbox => {
+           checkbox.addEventListener('change', function () {
+               const selectedTags = Array.from(checkboxes)
+                   .filter(checkbox => checkbox.checked)
+                   .map(checkbox => checkbox.value);
+
+               papers.forEach(paper => {
+                   const paperTags = paper.getAttribute('data-tags').split(' ');
+                   if (selectedTags.length === 0 || selectedTags.some(tag => paperTags.includes(tag))) {
+                       paper.style.display = '';
+                   } else {
+                       paper.style.display = 'none';
+                   }
+               });
+           });
+       });
+   });
+</script>
       <!-- Le javascript
          ================================================== -->
       <!-- Placed at the end of the document so the pages load faster -->
