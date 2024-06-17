@@ -550,3 +550,12 @@ ul.sponsors {
 	color: #8F8F8F;
 	font-size: 11px;
 }
+
+.checkbox-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox-row label {
+    margin-right: 20px;
+}
